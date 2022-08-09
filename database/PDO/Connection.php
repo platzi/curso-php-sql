@@ -1,13 +1,39 @@
 <?php
 
-$server = "localhost";
-$database = "finanzas_personales";
-$username = "retaxmaster";
-$password = "123";
+namespace Database\PDO;
 
-$connection = new PDO("mysql:host=$server;dbname=$database", $username, $password);
+class Connection {
 
-$setnames = $connection->prepare("SET NAMES 'utf8'");
-$setnames->execute();
+    private static $instance;
+    private $connection;
 
-var_dump($setnames);
+    private function __construct() {
+        $this->make_connection();
+    }
+
+    public static function getInstance() {
+        if (!self::$instance instanceof self)
+            self::$instance = new self();
+
+        return self::$instance;
+    }
+
+    public function get_database_instance() {
+        return $this->connection;
+    }
+
+    private function make_connection() {
+        $server = "localhost";
+        $database = "finanzas_personales";
+        $username = "retaxmaster";
+        $password = "123";
+
+        $conexion = new \PDO("mysql:host=$server;dbname=$database", $username, $password);
+
+        $setnames = $conexion->prepare("SET NAMES 'utf8'");
+        $setnames->execute();
+
+        $this->connection = $conexion;
+    }
+    
+}
