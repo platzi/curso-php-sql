@@ -9,5 +9,10 @@
             "email": "retaxmaster@hotmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Database\\": "database/"
+        }
+    },
     "require": {}
 }
