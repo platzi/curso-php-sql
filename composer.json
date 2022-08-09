@@ -1,0 +1,13 @@
+{
+    "name": "retaxmaster/php-database",
+    "description": "Proyecto del curso de conexion de php con bases de datos",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "RetaxMaster",
+            "email": "retaxmaster@hotmail.com"
+        }
+    ],
+    "require": {}
+}
