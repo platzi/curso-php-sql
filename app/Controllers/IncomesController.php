@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use Database\MySQLi\Connection;
+
 class IncomesController {
 
     /**
@@ -17,7 +19,19 @@ class IncomesController {
     /**
      * Guarda un nuevo recurso en la base de datos
      */
-    public function store() {}
+    public function store($data) {
+
+        $connection = Connection::getInstance()->get_database_instance();
+
+        $connection->query("INSERT INTO incomes (payment_method, type, date, amount, description) VALUES(
+            {$data['payment_method']},
+            {$data['type']},
+            '{$data['date']}',
+            {$data['amount']},
+            '{$data['description']}'
+        );");
+
+    }
 
     /**
      * Muestra un único recurso especificado
