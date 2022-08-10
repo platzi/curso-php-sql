@@ -20,8 +20,11 @@ class IncomesController {
         $stmt = $this->connection->prepare("SELECT * FROM incomes");
         $stmt->execute();
 
-        while($row = $stmt->fetch())
-            echo "Ganaste " . $row["amount"] . " USD en: " . $row["description"] . "\n";
+        $stmt->bindColumn("amount", $amount);
+        $stmt->bindColumn("description", $description);
+
+        while($stmt->fetch())
+            echo "Ganaste $amount USD en: $description \n";
 
     }
 
