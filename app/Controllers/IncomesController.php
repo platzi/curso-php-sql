@@ -68,7 +68,27 @@ class IncomesController {
     /**
      * Elimina un recurso específico de la base de datos
      */
-    public function destroy() {}
+    public function destroy($id) {
+
+        $this->connection->beginTransaction();
+
+        // Esto no funciona en MySQL
+        // $this->connection->exec("DROP TABLE incomes_test");
+
+        $stmt = $this->connection->prepare("DELETE FROM incomes WHERE id = :id");
+        $stmt->execute([
+            ":id" => $id
+        ]);
+
+        $sure = readline("¿De verdad quieres eliminar este registro? ");
+
+        if ($sure == "no")
+            $this->connection->rollBack();
+        else
+            $this->connection->commit();
+
+
+    }
     
 }
 
