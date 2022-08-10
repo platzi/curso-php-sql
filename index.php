@@ -19,9 +19,9 @@ $incomes_controller->store([
 
 $withdrawal_controller = new WithdrawalsController();
 $withdrawal_controller->store([
-    "payment_method" => PaymentMethodEnum::CreditCard->value,
-    "type" => WithdrawalTypeEnum::Purchase->value,
-    "date" => date("Y-m-d H:i:s"),
-    "amount" => 20,
-    "description" => "Compré mucha comida para mis queridos y amados michis."
+    ":payment_method" => PaymentMethodEnum::CreditCard->value,
+    ":type" => WithdrawalTypeEnum::Purchase->value,
+    ":date" => date("Y-m-d H:i:s"),
+    ":amount" => 20,
+    ":description" => "Compré mucha comida para mis queridos y amados michis."
 ]);
