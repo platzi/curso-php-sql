@@ -64,7 +64,18 @@ class WithdrawalsController {
     /**
      * Muestra un único recurso especificado
      */
-    public function show() {}
+    public function show($id) {
+
+        $stmt = $this->connection->prepare("SELECT * FROM withdrawals WHERE id=:id");
+        $stmt->execute([
+            ":id" => $id
+        ]);
+
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        echo "El registro con id $id dice que te gastaste {$result['amount']} USD en {$result['description']}";
+
+    }
 
     /**
      * Muestra el formulario para editar un recurso

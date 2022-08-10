@@ -26,5 +26,11 @@ $withdrawal_controller->store([
     "description" => "Compré juguetitos para mis queridos y amados michis."
 ]); */
 
+/* $withdrawal_controller = new WithdrawalsController();
+$withdrawal_controller->index(); */
+
 $withdrawal_controller = new WithdrawalsController();
-$withdrawal_controller->index();
+$withdrawal_controller->show(1);
+
+/* $incomes_controller = new IncomesController();
+$incomes_controller->index(); */
