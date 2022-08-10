@@ -17,11 +17,14 @@ $incomes_controller->store([
     "description" => "Pago de mi salario por mi arduo y muy bien trabajo :D"
 ]); */
 
-$withdrawal_controller = new WithdrawalsController();
+/* $withdrawal_controller = new WithdrawalsController();
 $withdrawal_controller->store([
     "payment_method" => PaymentMethodEnum::CreditCard->value,
     "type" => WithdrawalTypeEnum::Purchase->value,
     "date" => date("Y-m-d H:i:s"),
     "amount" => 50,
     "description" => "Compré juguetitos para mis queridos y amados michis."
-]);
+]); */
+
+$withdrawal_controller = new WithdrawalsController();
+$withdrawal_controller->index();

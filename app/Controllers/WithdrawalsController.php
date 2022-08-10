@@ -6,10 +6,36 @@ use Database\PDO\Connection;
 
 class WithdrawalsController {
 
+    private $connection;
+
+    public function __construct() {
+        $this->connection = Connection::getInstance()->get_database_instance();
+    }
+
     /**
      * Muestra una lista de este recurso
      */
-    public function index() {}
+    public function index() {
+
+        $stmt = $this->connection->prepare("SELECT * FROM withdrawals");
+        $stmt->execute();
+
+        $results = $stmt->fetchAll();
+
+        foreach($results as $result)
+            echo "Gastaste " . $result["amount"] . " USD en: " . $result["description"] . "\n";
+
+        // Esto es usanfo Fetch Column
+
+        /* $stmt = $this->connection->prepare("SELECT amount, description FROM withdrawals");
+        $stmt->execute();
+
+        $results = $stmt->fetchAll(\PDO::FETCH_COLUMN, 0);
+
+        foreach($results as $result)
+            echo "Gastaste $result USD \n"; */
+
+    }
 
     /**
      * Muestra un formulario para crear un nuevo recurso
@@ -21,9 +47,7 @@ class WithdrawalsController {
      */
     public function store($data) {
 
-        $connection = Connection::getInstance()->get_database_instance();
-
-        $stmt = $connection->prepare("INSERT INTO withdrawals (payment_method, type, date, amount, description) VALUES (:payment_method, :type, :date, :amount, :description)");
+        $stmt = $this->connection->prepare("INSERT INTO withdrawals (payment_method, type, date, amount, description) VALUES (:payment_method, :type, :date, :amount, :description)");
 
         $stmt->bindValue(":payment_method", $data["payment_method"]);
         $stmt->bindValue(":type", $data["type"]);
