@@ -20,18 +20,18 @@ class IncomesController {
         $stmt = $this->connection->prepare("SELECT * FROM incomes");
         $stmt->execute();
 
-        $stmt->bindColumn("amount", $amount);
-        $stmt->bindColumn("description", $description);
+        $results = $stmt->fetchAll();
 
-        while($stmt->fetch())
-            echo "Ganaste $amount USD en: $description \n";
+        require("../resources/views/incomes/index.php");
 
     }
 
     /**
      * Muestra un formulario para crear un nuevo recurso
      */
-    public function create() {}
+    public function create() {
+        require("../resources/views/incomes/create.php");
+    }
 
     /**
      * Guarda un nuevo recurso en la base de datos
@@ -47,6 +47,8 @@ class IncomesController {
         $stmt->bindValue(":description", $data["description"]);
 
         $stmt->execute();
+
+        header("location: incomes");
 
     }
 

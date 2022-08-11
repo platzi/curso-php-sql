@@ -1,0 +1,17 @@
+main {
+    display: flex;
+    justify-content: center;
+}
+
+main form {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
